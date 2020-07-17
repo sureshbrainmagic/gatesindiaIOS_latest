@@ -1,0 +1,79 @@
+<app-header pagetitle="Engine Code" [segment]="config.productFunc(segment)" [make]="make" [model]="model"></app-header>
+<ion-content>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3" class="ion-text-center"  >
+        <ion-text color="light">
+          Year From
+        </ion-text>
+      </ion-col>
+      <ion-col size="3">
+        <mat-select value="All" class="form-control" [(ngModel)]="getFromYearValue"  (selectionChange)="searchOnYearFrom($event)">
+          <mat-option value="All">All</mat-option>
+          <mat-option *ngFor="let from of yearFrom" [value]="from">
+            {{from}}
+          </mat-option>
+        </mat-select>
+      </ion-col>
+
+      <ion-col size="3" class="ion-text-center">
+        <ion-text color="light">
+          Year To
+        </ion-text>
+      </ion-col>
+      <ion-col size="3">
+        <mat-select value="All" class="form-control" (selectionChange)="searchOnYearTill($event)">
+          <mat-option value="All">All</mat-option>
+          <mat-option *ngFor="let to of yearTill" [value]="to">
+            {{to}}
+          </mat-option>
+        </mat-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="showData" class="ion-padding-top">
+
+
+    <div class="table-responsive">
+      <table class="table">
+        <tr style="background-color: black;">
+          <th class="text-center">
+            <ion-text color="light">Model Code</ion-text>
+          </th>
+          <th class="text-center">
+            <ion-text color="light">Engine Code</ion-text>
+          </th>
+          <th class="text-center">
+            <ion-text color="light">Year From</ion-text>
+          </th>
+          <th class="text-center">
+            <ion-text color="light">Year To</ion-text>
+          </th>
+        </tr>
+        <!-- <tr *ngFor="let ec of engineCodeJSON"  routerLink="/enginespecs/{{segment}}/{{make}}/{{model}}/{{ec.Enginecode}}" routerDirection="forward"  >  -->
+        <tr *ngFor="let ec of engineCodeJSON" (click)="gotoEngineSpecs(ec)">
+          <td class="text-center">
+            <ion-text color="light">{{ec.Modelcode}}</ion-text>
+          </td>
+          <td class="text-center">
+            <ion-text color="light">{{ec.Enginecode}}</ion-text>
+          </td>
+          <td class="text-center">
+            <ion-text color="light">{{ec.YearFrom}}</ion-text>
+          </td>
+          <td class="text-center">
+            <ion-text color="light">{{ec.YearTill}}</ion-text>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+
+</ion-content>
+
+<app-fabs></app-fabs>

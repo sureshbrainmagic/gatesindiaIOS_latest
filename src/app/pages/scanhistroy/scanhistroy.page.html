@@ -1,0 +1,44 @@
+<app-header pagetitle="Scan Histroy"></app-header>
+
+<ion-content>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tr style="background-color: black;">
+        <td class="ion-text-center">
+          <ion-text color="light">
+            <b>Date</b>
+          </ion-text>
+        </td>
+
+        <td class="ion-text-center">
+          <ion-text color="light">
+            <b>Product Serial Number</b>
+          </ion-text>
+        </td>
+
+        <td class="ion-text-center">
+          <ion-text color="light">
+            <b> Status</b>
+          </ion-text>
+        </td>
+
+      </tr>
+
+
+      <tr *ngFor="let sh of scanHistroyJson">
+        <td>
+          <ion-text color="light">{{sh.Datetime | date:'dd/MM/yyyy' }}</ion-text>
+        </td>
+        <td class="ion-text-center">
+          <ion-text color="light">{{sh.SerialNo}}</ion-text>
+        </td>
+        <td>
+          <ion-text color="light">{{sh.ScanStatus}}</ion-text>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+</ion-content>
+<app-fabs></app-fabs>

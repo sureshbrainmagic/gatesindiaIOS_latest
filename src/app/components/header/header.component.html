@@ -1,0 +1,28 @@
+ <ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-menu-button color="light"></ion-menu-button>
+        </ion-col>
+        <ion-col size="10" class="ion-text-center" >
+          <img src="../../../assets/img/bannersp.png">
+        </ion-col>
+        <ion-col size="12" class="ion-text-center">
+          <ion-text color="light">
+            <h5><b [innerHTML]="pagetitle"></b></h5>
+          </ion-text>
+        </ion-col>
+        <ion-col size="12" *ngIf="segment">
+          <ion-text color="light">
+            {{segment}} <span *ngIf="make"> >> {{make}}</span> <span *ngIf="model"> >> {{model}}</span>
+            <span *ngIf="enginecode"> >> {{enginecode}}</span>
+            <span *ngIf="cc"> >> {{cc}}</span>
+            <span *ngIf="article"> >> {{article}}</span>
+
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>

@@ -1,0 +1,25 @@
+<app-header pagetitle="Make" [segment]="heading"></app-header>
+
+<ion-content>
+  
+  <ion-list lines="full">
+    <ion-item *ngFor="let make of makeArray" detail="false" routerLink="/model/{{segment}}/{{make}}"
+      routerDirection="forward">
+      <ion-label color="light">
+        {{make}}
+      </ion-label>
+      <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+  <!-- <div *ngIf="noRecord"  id="container">
+    <div class="col text-center text-danger">
+      <h5>No Record Found</h5>
+    </div>
+  </div> -->
+</ion-content>
+
+<app-fabs></app-fabs>

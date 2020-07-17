@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="end">
+      <ion-button (click)="close()" fill="clear" color="dark">
+        <ion-icon name="close" color="light" slot="start"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Select Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="divCenter" *ngIf="!imageData">
+    <i style="color: gray;" class="fa fa-camera fa-5x" (click)="getPicture(1)"   ></i>
+  </div>  
+
+  <div *ngIf="imageData" class="divCenter">
+    <img [src]="imageData" height="150" width="150" /><br>
+    <ion-button color="danger" (click)="uploadImgToServer()"  >Upload Image</ion-button>
+  </div>
+  
+
+</ion-content>

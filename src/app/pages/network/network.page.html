@@ -1,0 +1,14 @@
+<app-header pagetitle="Distributor Network"></app-header>
+<ion-content>
+  <ion-list lines="full">
+    <ion-item *ngFor="let dNetwork of distributorNetworkJson" detail="false" routerLink="/networkdetails/{{dNetwork}}"   >
+      <ion-label color="light">
+        {{dNetwork}}
+      </ion-label>
+      <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+</ion-content>
+<app-fabs></app-fabs>

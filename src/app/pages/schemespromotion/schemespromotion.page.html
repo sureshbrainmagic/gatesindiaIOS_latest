@@ -1,0 +1,44 @@
+<app-header pagetitle="Schemes & Promotion"></app-header>
+<ion-content>
+
+    <div class="table-responsive" *ngIf="showData"   >
+        <table class="table">
+            <tr style="background-color: black;"> 
+                <td>
+                    <ion-text color="light">
+                        Scheme Name
+                    </ion-text>
+                </td>
+                <td>
+                    <ion-text color="light">
+                     Description
+                    </ion-text>
+                </td>
+                <td>
+                    <ion-text color="light">
+                        Exp-Date
+                    </ion-text>
+                </td>
+            </tr>
+            <tr *ngFor="let s of schemesJson"  >
+                <td>
+                    <ion-text color="light">
+                        {{s.Schemesname}}
+                    </ion-text>
+                </td>
+                <td>
+                    <ion-text color="light">
+                        {{s.Description}}
+                    </ion-text>
+                </td>
+                <td>
+                    <ion-text color="light">
+                        {{s.ShemeExpiryDate}}
+                    </ion-text>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <app-norecord [isNoRecord]="noRecord"></app-norecord>
+</ion-content>
+<app-fabs></app-fabs>

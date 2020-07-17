@@ -1,0 +1,29 @@
+<app-header [pagetitle]="pagemode"></app-header>
+<ion-content class="ion-padding-top">
+
+  <ion-list lines="full" *ngIf="pagemode === 'Other Links' "   >
+    <ion-item *ngFor="let ol of otherLinksJson" (click)="openExternalURL(ol.videoURL)">
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/img/gatesThumbnail.jpeg" class="img-responsive">
+      </ion-thumbnail>
+      <ion-label color="light">
+        <span class="text-wrap">
+          {{ol.Videoname}}
+        </span>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list lines="full" *ngIf="pagemode === 'Product Info' "  >
+    <ion-item *ngFor="let pi of productInfoJson" detail="false" (click)="openExternalURL(pi.PdfURL)" >
+      <ion-label color="light">
+        {{pi.PdfName}}
+      </ion-label>
+      <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+  
+</ion-content>
+<app-fabs></app-fabs>

@@ -1,0 +1,66 @@
+<app-header pagetitle="Home"></app-header>
+
+<ion-content id="foot">
+
+  <div>
+    <img src="../../../assets/img/find_the_right_part.jpg" style="width: 100%;" class="img-responsive">
+  </div>
+
+  <div class="ion-padding ion-text-center">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" routerLink="/productsearch">
+          <img class="myIcon img-responsive" src="../../../assets/img/vehicle_search.png">
+          <ion-text color="light">
+            <div class="ion-text-center">
+              Vehicle & Product Search
+            </div>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6" (click)="chkUserFn()">
+          <img class="myIcon img-responsive" src="../../../assets/img/training_video.png">
+          <ion-text color="light"> 
+            <div class="ion-text-center">
+              Scan
+            </div>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="6" routerLink="/whatsnew">
+          <img class="myIcon img-responsive" src="../../../assets/img/whats_new.png">
+          <ion-text color="light">
+            <div class="ion-text-center">
+              What's New!
+            </div>
+          </ion-text>
+        </ion-col>
+        <ion-col size="6" routerLink="/notification">
+          <img class="myIcon img-responsive" src="../../../assets/img/notification.png">
+          <ion-text color="light">
+            <div class="ion-text-center">
+              Notification
+            </div>
+          </ion-text>
+        </ion-col>
+        <!-- <ion-col size="12" routerLink="/test2">
+          <img class="myIcon" src="../../../assets/img/notification.png">
+          <ion-text color="light">
+            <div class="ion-text-center">
+              Test 2
+            </div>
+          </ion-text>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+
+  </div>
+ 
+  <!-- <br>
+  <div class="ion-text-center">
+    <ion-button (click)="logoutFn()" mode="md">
+      Logout
+    </ion-button>
+  </div> -->
+
+</ion-content>

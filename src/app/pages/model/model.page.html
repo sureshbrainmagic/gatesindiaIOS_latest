@@ -1,0 +1,21 @@
+<app-header pagetitle="Model" [segment]="config.productFunc(segment)" [make]="make" ></app-header>
+
+<ion-content>
+
+  <ion-list lines="full">
+    <ion-item *ngFor="let model of modelJSON" detail="false" routerLink="/enginecode/{{segment}}/{{make}}/{{model}}"
+      routerDirection="forward">
+      <ion-label color="light">
+        {{model}}
+      </ion-label>
+      <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+
+</ion-content>
+
+<app-fabs></app-fabs>

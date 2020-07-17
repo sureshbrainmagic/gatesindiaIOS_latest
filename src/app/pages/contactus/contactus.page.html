@@ -1,0 +1,28 @@
+<app-header pagetitle="Contact Us"></app-header>
+<ion-content>
+
+  <div class="ion-padding" id="container">
+    <ion-text color="light" class="ion-text-center">
+      GATES UNITTA INDIA COMPANY PRIVATE LIMITED <br>
+      F-19, SIPCOT Industrail Area,<br>
+      Pondur - A,<br>
+      Sriperumbudur,<br>
+      Kanchipuram District,<br>
+      Tamil Nadu,<br>
+      India, 602-106.<br>
+
+      Telephone : <u (click)="callFN('+91 44 4715100')">+91.44.4715100</u><br>
+      Fax : <u (click)="callFN('+91 44 4715200')">+91.44.47115200</u><br>
+      Web : <span (click)="openExternalURL()">
+        <u>www.Gates.com</u>
+      </span><br>
+      Email : <u (click)="openMailfn()">CC-AAMI@gates.com</u><br>
+    </ion-text>
+    <ion-button color="danger" (click)="openLocation()">
+      <ion-icon name="location-outline" slot="start"></ion-icon>
+      GO TO MAP
+    </ion-button>
+  </div>
+
+</ion-content>
+<app-fabs></app-fabs>

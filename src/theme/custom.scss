@@ -1,0 +1,99 @@
+* {
+    outline: none;
+    font-size: 16px;
+    // background-image: url('../../../assets/img/background.jpg');
+}
+
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+    /* padding: 0 24px 16px; */
+}
+
+.img-modal {
+    --height: 50%;
+    --border-radius: 10px;
+    padding: 25px;
+}
+
+.btn-circle.btn-xl {
+    width: 50px;
+    height: 50px;
+    padding: 8px 10px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+}
+
+ion-footer {
+    border-bottom: 10px solid #cccccc;
+}
+
+ion-header,
+ion-footer {
+    ion-toolbar {
+        // --background: url('/assets/img/background.jpg');
+        --background: none;
+        background: url('/assets/img/background.png') no-repeat 0 0;
+        background-size: cover;
+    }
+}
+
+
+ion-content {
+    // --background: url('/assets/img/background.png') 0 0/100% 100% no-repeat;
+  //  -–color: #fff;
+    --background: none;
+    background: url('/assets/img/background.png') no-repeat 0 0;
+    background-size: cover;
+}
+
+ion-menu-button {
+    font-size: 30px;
+}
+
+// ion-content.background {
+//     --background: #434343;
+//    //  --background: url('assets/img/background.jpg')40% 40%/110% 110% no-repeat  ;
+// }
+// .background {
+//     --background: #434343 !important;
+// }
+hr.new1 {
+    border-top: 1px solid white;
+}
+
+hr.hrRed {
+    border-top: 1px solid red;
+}
+
+.error-message {
+    color: red;
+}
+
+.required {
+    color: red;
+}
+
+ion-loading.custom-loader-class {
+    color: var(--ion-color-danger);
+    font-family: Geogrotesque;
+}
+
+.myIcon {
+    height: 100px;
+}
+
+ion-list,
+ion-item {
+    --ion-background-color: transparent !important;
+}
+
+#container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}

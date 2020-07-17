@@ -1,0 +1,47 @@
+<app-header pagetitle="Notification"></app-header>
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let n of notificationJson; let i=index">
+      <ion-col size="2" class="ion-text-center">
+        <ion-text color="light">
+          {{i+1}}.
+        </ion-text>
+      </ion-col>
+      <ion-col size="3">
+        <ion-text color="light">
+          Name
+        </ion-text>
+      </ion-col>
+      <ion-col size="7">
+        <ion-text color="light">
+          {{n.NotificationName}}
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="2" class="ion-text-center">
+        &nbsp;
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-text color="light">
+          Description
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="7">
+        <ion-text color="light">
+          {{n.Description}}
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <hr class="new1">
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>
+
+<app-fabs></app-fabs>

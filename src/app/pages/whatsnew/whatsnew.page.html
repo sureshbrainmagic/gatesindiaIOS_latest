@@ -1,0 +1,67 @@
+<app-header pagetitle="What's New!" ></app-header>
+<ion-content >
+
+  <div  *ngIf="showData" class="table-responsive">
+    <table class="table table-fixed">
+      <thead>
+      <tr style="background-color: black;"  >
+        <td>
+          <ion-text color="light">
+            Make
+          </ion-text>
+        </td>
+        
+        <td>
+          <ion-text color="light">
+            Model &<br>Model Code
+          </ion-text>          
+        </td>
+
+        <td class="ion-text-center">
+          <ion-text color="light">
+            Part Number
+          </ion-text>
+        </td>
+
+        <td class="ion-text-center">
+          <ion-text color="light">
+            Engine Code
+          </ion-text>
+        </td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let w of whatsNewsJson" (click)="goToMoreDetailsFn(w);"  >
+        <td>
+          <ion-text color="light">
+            {{w.Make}}
+          </ion-text>
+        </td>
+        <td>
+          <ion-text color="light">
+            {{w.Model}}<br>
+            {{w.Modelcode}}
+          </ion-text>
+        </td>
+
+        <td class="ion-text-center">
+          <ion-text color="light">
+            {{w.Article}} 
+          </ion-text>
+        </td>
+
+        <td class="ion-text-center">
+          <ion-text color="light">
+            {{w.Enginecode}}
+          </ion-text>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+</ion-content>
+
+<app-fabs></app-fabs>

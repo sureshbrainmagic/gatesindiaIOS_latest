@@ -1,0 +1,79 @@
+<app-header pagetitle="Scan"></app-header>
+<ion-content>
+
+  <ion-grid class="ion-padding" style="background-color: white;">
+    <ion-row>
+      <ion-col size="6">
+        <img src="../../../assets/img/qr_correct.jpg" />
+      </ion-col>
+      <ion-col size="6">
+        <img src="../../../assets/img/invalid_qr_image.jpg" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="ion-padding">
+    <ion-text color="light">
+      Enter serial number or scan serial number next to Gates logo
+    </ion-text>
+  </div>
+  <div class="ion-text-center">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" (click)="scanQrFn()">
+          <img class="myIcon img-responsive" src="../../../assets/img/scan.svg">
+          <ion-text color="light">
+            <div class="ion-text-capitalize ion-text-center">
+              Scan Bar code or QR code
+            </div>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="6" (click)="enterSerialNumberFn()">
+          <img class="myIcon img-responsive" src="../../../assets/img/coupon.svg">
+          <ion-text color="light">
+            <div class="ion-text-capitalize ion-text-center">
+              Enter Product Serial Number
+            </div>
+          </ion-text>
+        </ion-col>
+        <ion-col class="ion-padding-top" size="12" routerLink="/scanhistroy">
+          <img class="myIcon img-responsive" src="../../../assets/img/scanhistroy.svg">
+          <ion-text color="light">
+            <div class="ion-text-capitalize ion-text-center">
+              Scan Histroy
+            </div>
+          </ion-text>
+        </ion-col>
+        <!-- <ion-col class="ion-padding-top" size="6" *ngIf="userType == 'Gates Employee'"  (click)="uploadImage()" >
+          <img class="myIcon img-responsive" src="../../../assets/img/uploadImg.svg">
+          <ion-text color="light">
+            <div class="ion-text-capitalize ion-text-center">
+              Click Picture
+            </div>
+          </ion-text>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+
+  <!-- <div  class="ion-padding">
+    <ion-button class="ion-text-capitalize" color="danger" mode="md" expand="full" size="large" (click)="scanQrFn()" >
+      Scan Bar code or QR code
+    </ion-button>
+    <br>
+    <ion-button class="ion-text-capitalize" color="danger" mode="md" expand="full" size="large" (click)="enterSerialNumberFn()" >
+      Enter Product Serial Number
+    </ion-button>
+    <br>
+    <ion-button class="ion-text-capitalize" color="danger" mode="md" expand="full" size="large" routerLink="/scanhistroy"  >
+      Scan Histroy
+    </ion-button>
+  </div> -->
+
+
+</ion-content>
+
+<app-fabs></app-fabs>

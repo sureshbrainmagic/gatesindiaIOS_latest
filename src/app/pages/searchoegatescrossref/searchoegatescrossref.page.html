@@ -1,0 +1,56 @@
+<app-header pagetitle="OE / Gates / Cross Ref Number Search"></app-header>
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2">
+        <ion-text color="light">Search</ion-text>
+      </ion-col>
+      <ion-col size="8">
+        <div class="form-group has-search">
+
+          <div class="form-control-feedback">
+            <ion-buttons slot="start">
+              <ion-button (click)="alterMsgFn()">
+                <i style="color: red;" class="fa fa-info-circle"></i>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          <input type="text" style="text-align: center;" [(ngModel)]="oeNo" class="form-control" placeholder="Search"
+            placeholder="OE / Gates / Cross Ref No">
+            <ion-text color="light">
+              Enter Part No without spaces and dashes
+            </ion-text>
+        </div>
+      </ion-col>
+      <ion-col size="2" (click)="getPartNoFn()">
+        <img src="../../../assets/img/search.png" height="30" width="30">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+
+  <div class="ion-padding-start ion-padding-end table-responsive" *ngIf="showData"  >
+    <table class="table">
+      <tr style="background-color: black;">
+        <td class="text-center">
+          <ion-text color="light">
+            Search Result for - {{oeNo}}
+          </ion-text>
+        </td>
+      </tr>
+      <tr *ngFor="let partno of partNoJson">
+        <td class="text-center" (click)="goToSearchDetails(partno)"   >
+          <ion-text color="light">
+          {{partno}}
+        </ion-text>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+</ion-content>
+
+<app-fabs></app-fabs>

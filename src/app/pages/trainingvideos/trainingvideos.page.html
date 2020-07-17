@@ -1,0 +1,21 @@
+<app-header pagetitle="Training Videos"></app-header>
+
+<ion-content>
+  <div *ngIf="showData" class="ion-padding-top">
+    <ion-list lines="full">
+
+      <ion-item *ngFor="let video of videosJson" detail="false" routerLink="/videosdetails/{{video}}"
+        routerDirection="forward">
+        <ion-label color="light">
+          {{video}}
+        </ion-label>
+        <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <app-norecord   [isNoRecord]="noRecord"></app-norecord>
+
+</ion-content>
+
+<app-fabs></app-fabs>

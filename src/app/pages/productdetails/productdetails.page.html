@@ -1,0 +1,51 @@
+<app-header pagetitle="Product Details" [segment]="config.productFunc(segment)" [make]="make"
+  [model]="engineCodeObj.Model" [enginecode]="engineCodeObj.Enginecode" [cc]="engineSpecsObj.CC"></app-header>
+
+<ion-content>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tr style="background-color: black;">
+        <th class="text-center ion-text-nowrap">
+          <ion-text color="light">Part Description</ion-text>
+        </th>
+        <th class="text-center ion-text-nowrap">
+          <ion-text color="light">Gates Part <br> Number</ion-text>
+        </th>
+        <!-- <th class="text-center ion-text-nowrap">
+          <ion-text color="light">Level</ion-text>
+        </th> -->
+        <th class="text-center ion-text-nowrap">
+          <ion-text color="light">Application<br>Att</ion-text>
+        </th>
+        
+        <!-- <th class="text-center">
+          <ion-text color="light">Fuel</ion-text>
+        </th> -->
+      </tr>
+      <tr *ngFor="let pd of productDetailsJson" (click)="gotoMoreDetails(pd)" >
+        <td>
+          <ion-text color="light">{{pd.Articlegroup}}</ion-text>
+        </td>
+        <td class="text-center">
+          <ion-text color="light">{{pd.Article}}</ion-text>
+        </td>
+        <!-- <td class="ion-text-nowrap" >
+          <ion-text color="light">{{pd.Level1}}</ion-text>
+        </td> -->
+        <td class="text-center" >
+          <ion-text color="light">{{pd.ApplicationAttributes}}</ion-text>
+        </td>
+        <!-- <td class="text-center">
+          <ion-text color="light">{{pd.Fuel}}</ion-text>
+        </td> -->
+      </tr>
+    </table>
+  </div>
+
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+
+</ion-content>
+
+<app-fabs></app-fabs>

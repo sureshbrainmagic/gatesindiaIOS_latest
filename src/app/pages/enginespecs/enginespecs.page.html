@@ -1,0 +1,50 @@
+<app-header pagetitle="Engine Specification" [segment]="config.productFunc(segment)" [make]="make" [model]="engineCodeObj.Model" [enginecode]="engineCodeObj.Enginecode" ></app-header>
+
+<ion-content>
+
+
+  <div class="table-responsive">
+    <table class="table">
+      <tr style="background-color: black;">
+        <th class="text-center">
+          <ion-text color="light">Stroke</ion-text>
+        </th>
+        <th class="text-center">
+          <ion-text color="light">CC</ion-text>
+        </th>
+        <th class="text-center">
+          <ion-text color="light">KW</ion-text>
+        </th>
+        <!-- <th class="text-center">
+          <ion-text color="light">Level</ion-text>
+        </th> -->
+        <th class="text-center">
+          <ion-text color="light">Fuel</ion-text>
+        </th>
+      </tr>
+      <tr *ngFor="let ec of engineSpecsJson" (click)="gotoProductDetails(ec)">
+        <td class="text-center">
+          <ion-text color="light">{{ec.Stroke}}</ion-text>
+        </td>
+        <td class="text-center">
+          <ion-text color="light">{{ec.CC}}</ion-text>
+        </td>
+        <td class="text-center">
+          <ion-text color="light">{{ec.KW}}</ion-text>
+        </td>
+        <!-- <td class="text-center">
+          <ion-text color="light">{{ec.Level1}}</ion-text>
+        </td> -->
+        <th class="text-center">
+          <ion-text color="light">{{ec.Fuel}}</ion-text>
+        </th>
+      </tr>
+    </table>
+  </div>
+
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+
+</ion-content>
+
+<app-fabs></app-fabs>

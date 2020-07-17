@@ -1,0 +1,156 @@
+<app-header pagetitle="Distributors"></app-header>
+
+<ion-content>
+
+
+  <div class="fixed ion-padding text-center" style="background-image: url('../../../assets/img/networkdetails.png');width: 100%;" >
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-text color="light">Country</ion-text>
+        </ion-col>
+        <ion-col size="8">
+          <mat-select value="All" class="form-control"  [(ngModel)]="countryValue" (selectionChange)="searchCountry($event)">
+            <mat-option value="All">All</mat-option>
+            <mat-option *ngFor="let country of countryJson" [value]="country">
+              {{country}}
+            </mat-option>
+          </mat-select>
+        </ion-col>
+
+
+        <ion-col size="4">
+          <ion-text color="light">
+            State
+          </ion-text>
+        </ion-col>
+        <ion-col size="8">
+          <mat-select value="All" class="form-control" [(ngModel)]="stateValue" (selectionChange)="searchState($event)">
+            <mat-option value="All">All</mat-option>
+            <mat-option *ngFor="let state of stateJson" [value]="state">
+              {{state}}
+            </mat-option>
+          </mat-select>
+        </ion-col>
+
+
+        <ion-col size="4">
+          <ion-text color="light">
+            City
+          </ion-text>
+        </ion-col>
+        <ion-col size="8">
+          <mat-select value="All" class="form-control" [(ngModel)]="cityValue" (selectionChange)="searchCity($event)">
+            <mat-option value="All">All</mat-option>
+            <mat-option *ngFor="let city of cityJson" [value]="city">
+              {{city}}
+            </mat-option>
+          </mat-select>
+        </ion-col>
+
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tr style="background-color: black;">
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            Distributor Name
+          </ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            Contact Person
+          </ion-text>
+        </td>
+        <td>
+          <ion-text color="light">
+            Address
+          </ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            City
+          </ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            State
+          </ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            Country
+          </ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            Email
+          </ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            Mobile Nos
+          </ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">
+            Map
+          </ion-text>
+        </td>
+      </tr>
+      <tr *ngFor="let dd of distributorDetailsJson">
+        <td class="ion-text-nowrap">
+          <ion-text color="light">{{dd.Name}}</ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">{{dd.contactperson}}</ion-text>
+        </td>
+        <td class="ion-text-wrap">
+          <ion-text color="light">{{dd.Address}}</ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">{{dd.City}}</ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">{{dd.State}}</ion-text>
+        </td>
+        <td class="ion-text-nowrap">
+          <ion-text color="light">{{dd.Country}}</ion-text>
+        </td>
+        <td *ngIf="dd.Email != 'NULL'; else elsePerfId">
+          <ion-text color="light">{{ dd.Email }}
+          </ion-text>
+        </td>
+        <ng-template #elsePerfId>
+          <td>
+            <ion-text color="light">N/A</ion-text>
+          </td>
+        </ng-template>
+        <!-- <td class="ion-text-nowrap">
+          <ion-text color="light">{{dd?.Email || 'N/A'}}</ion-text>
+        </td> -->
+        <td class="ion-text-nowrap">
+          <ion-text color="light">{{dd.Contact}}</ion-text>
+        </td>
+        <td class="ion-text-center">
+          <!-- openLocation -->
+          <ion-buttons slot="start">
+            <ion-button (click)="openLocation(dd)">
+              <i class="fa fa-map-marker fa-2x"  style="color: red;" ></i>
+
+              <!-- <ion-icon name="location-outline" color="danger"></ion-icon> -->
+            </ion-button>
+          </ion-buttons>
+          
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <app-norecord [isNoRecord]="noRecord"></app-norecord>
+</ion-content>
+<app-fabs></app-fabs>

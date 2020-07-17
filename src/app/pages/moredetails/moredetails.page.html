@@ -1,0 +1,474 @@
+<div *ngIf="mode == 'whatsnew'">
+  <app-header pagetitle="More Details" segment="What's New" [article]="queryString.Article"></app-header>
+</div>
+
+<div *ngIf="mode == 'prodDetails'">
+  <app-header pagetitle="More Details" [segment]="queryString.Segment" [make]="queryString.Make"
+    [model]="queryString.Model" [enginecode]="queryString.Enginecode" [cc]="queryString.CC"
+    [article]="queryString.Article"></app-header>
+</div>
+
+
+
+
+<ion-content class="ion-padding-top">
+
+  <div *ngIf="isNoRecord" id="container">
+    <div class="col text-center">
+      <ion-text color="light">
+        <h5><i class="fa fa-exclamation-triangle"></i>
+          &nbsp;No Record Found</h5>
+      </ion-text>
+    </div>
+  </div>
+
+  <div *ngIf="showData">
+    <div class="ion-padding-top">
+
+      <ion-segment style="background-color: black;" color="danger" [(ngModel)]="type" mode="ios">
+        <ion-segment-button value="productSpecs" color="danger" checked>
+          <ion-label color="danger" class="ion-text-capitalize">Product <br> Specification</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="suitsTheseModel">
+          <ion-label color="danger" class="ion-text-capitalize">Suits these <br> Model</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="otherResources">
+          <ion-label color="danger" class="ion-text-capitalize">Other <br> Resources</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <div [ngSwitch]="type">
+        <ion-list *ngSwitchCase="'productSpecs'">
+
+          <!-- <div class="my-2 ion-padding-bottom"> -->
+          <div class="ion-padding-top">
+            <!-- <hr class="my-3"> -->
+
+            <div *ngIf="!imgRecord" class="ion-text-center" >
+              <img src="../../../assets/img/noImg.jpeg" />
+            </div>
+
+            <!--Carousel Wrapper-->
+            <div *ngIf="imgRecord" id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails"
+              data-ride="carousel">
+              <!--Slides-->
+              <div class="carousel-inner" role="listbox">
+
+
+                <div class="carousel-item" *ngFor="let img of imgArray; let i = index" [ngClass]="{'active': i ==0 }">
+                  <img class="d-block w-100" (click)="config.imgZoomFn(img)" [src]="img">
+                </div>
+
+                <!--    <div class="carousel-item active" *ngIf="imgArray.ProductthumbURL1 !=''">
+                  <img class="d-block w-100" (click)="imgZoomFn(imgArray.ProductthumbURL1)"  [src]="imgArray.ProductthumbURL1"
+                    alt="First slide">
+                </div>
+                <div class="carousel-item"  *ngIf="imgArray.ProductthumbURL2 !=''" >
+                  <img class="d-block w-100"[src]="imgArray.ProductthumbURL2"
+                    alt="Second slide">
+                </div>
+
+                <div class="carousel-item" *ngIf="imgArray.ProductthumbURL3 !=''" >
+                  <img class="d-block w-100" [src]="imgArray.ProductthumbURL3"
+                    alt="Third slide">
+                </div>
+
+                <div class="carousel-item" *ngIf="imgArray.ProductthumbURL4 !=''">
+                  <img class="d-block w-100"  [src]="imgArray.ProductthumbURL4"
+                    alt="Fourth slide">
+                </div>
+
+                <div class="carousel-item"  *ngIf="imgArray.ProductthumbURL5 !=''">
+                  <img class="d-block w-100" [src]="imgArray.ProductthumbURL5"
+                    alt="Fivth slide">
+                </div>
+
+                <div class="carousel-item" *ngIf="imgArray.ProductthumbURL6 !=''">
+                  <img class="d-block w-100"  [src]="imgArray.ProductthumbURL6"
+                    alt="Sixth slide">
+                </div>
+
+                <div class="carousel-item"  *ngIf="imgArray.ProductthumbURL7 !=''">
+                  <img class="d-block w-100" [src]="imgArray.ProductthumbURL7"
+                    alt="Seven slide">
+                </div>
+
+
+                <div class="carousel-item" *ngIf="imgArray.ProductthumbURL8 !=''">
+                  <img class="d-block w-100"  [src]="imgArray.ProductthumbURL8"
+                    alt="Eighth slide">
+                </div>
+
+                <div class="carousel-item" *ngIf="imgArray.ProductthumbURL9 !=''">
+                  <img class="d-block w-100"  [src]="imgArray.ProductthumbURL9"
+                    alt="Ninth slide">
+                </div>
+
+                <div class="carousel-item" *ngIf="imgArray.ProductthumbURL10 !=''">
+                  <img class="d-block w-100"  [src]="imgArray.ProductthumbURL10"
+                    alt="Tenth slide">
+                </div> -->
+              </div>
+              <!--/.Slides-->
+              <!--Controls-->
+              <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+              <!--/.Controls-->
+              <!-- <ol class="carousel-indicators">
+                <li data-target="#carousel-thumb" data-slide-to="0" class="active">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL1 !=''" [src]="imgArray.ProductthumbURL1">
+                </li>
+                <li data-target="#carousel-thumb" data-slide-to="1">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL2 !=''" [src]="imgArray.ProductthumbURL2">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="2">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL3 !=''" [src]="imgArray.ProductthumbURL3">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="3">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL4 !=''" [src]="imgArray.ProductthumbURL4">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="4">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL5 !=''" [src]="imgArray.ProductthumbURL5">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="5">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL6 !=''" [src]="imgArray.ProductthumbURL6">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="6">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL7 !=''" [src]="imgArray.ProductthumbURL7">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="7">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL8 !=''" [src]="imgArray.ProductthumbURL8">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="8">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL8 !=''" [src]="imgArray.ProductthumbURL8">
+                </li>
+
+                <li data-target="#carousel-thumb" data-slide-to="9">
+                  <img class="d-block w-100" *ngIf="imgArray.ProductthumbURL10 !=''" [src]="imgArray.ProductthumbURL10">
+                </li>
+
+                
+              </ol> -->
+            </div>
+            <!-- <li data-target="#carousel-thumb" data-slide-to="2"><img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Others/Carousel-thumbs/img%20(31).jpg"
+                    class="img-fluid"></li> -->
+            <!-- <br> -->
+
+            <div class="ion-padding-top">
+
+              <div class="table-responsive">
+
+                <ion-grid class="ion-no-padding">
+                  <ion-row class="cement">
+                    <ion-col size="6"><b>Gates Part Number</b></ion-col>
+                    <ion-col size="1"><b>:</b></ion-col>
+                    <ion-col size="5"><b>{{productSpecs.Article}}</b></ion-col>
+                  </ion-row>
+
+                  <ion-row class="lightColor">
+                    <ion-col size="6"><b>MRP</b></ion-col>
+                    <ion-col size="1"><b>:</b></ion-col>
+                    <ion-col size="5"><b>{{productSpecs.MRP | currency:"₹ ": 'code'}}</b></ion-col>
+                  </ion-row>
+
+                  
+
+                  <ion-row class="cement">
+                    <ion-col size="6">Part Description</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5" class="ion-text-nowrap">{{productSpecs.Articlegroup}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="lightColor">
+                    <ion-col size="6">Vehicle Make</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.Make}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="cement">
+                    <ion-col size="6">Vehicle Model</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.Model}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="lightColor">
+                    <ion-col size="6">Engine Code</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.Enginecode}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="cement">
+                    <ion-col size="6">Vehicle Model Code</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.Modelcode}}</ion-col>
+                  </ion-row>
+
+                  <!-- <ion-row class="cement">
+                    <ion-col size="6">Month From / Year From</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.MonthFrom}} / {{productSpecs.YearFrom}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="lightColor">
+                    <ion-col size="6">Month Till / Year Till</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.MonthTill}} / {{productSpecs.YearTill}}</ion-col>
+                  </ion-row> -->
+                  <ion-row class="lightColor">
+                    <ion-col size="6">Month From / Year From</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">
+                      {{productSpecs.MonthFrom}}
+                      <span *ngIf="productSpecs.YearFrom !== '' " >
+                        / {{productSpecs.YearFrom}}
+                      </span>                      
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row class="cement">
+                    <ion-col size="6">Month Till / Year Till</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">
+                      {{productSpecs.MonthTill}} 
+                      <span *ngIf="productSpecs.YearTill !== '' " >
+                        / {{productSpecs.YearTill}}
+                      </span>
+                    </ion-col>
+                  </ion-row>
+
+
+                  <ion-row class="lightColor" 
+                   [ngStyle]="{'height': productSpecs.ApplicationAttributes.length > 30 ? '100px' : '40px'}"
+                  >
+                    <ion-col size="6">Application Att</ion-col>
+                    <ion-col size="1">:
+                      
+                    </ion-col>
+                    <ion-col size="5">{{productSpecs.ApplicationAttributes}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="cement">
+                    <ion-col size="6">Stroke</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.Stroke}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="lightColor">
+                    <ion-col size="6">CC</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.CC}}</ion-col>
+                  </ion-row>
+
+                  <ion-row class="cement">
+                    <ion-col size="6">KW</ion-col>
+                    <ion-col size="1">:</ion-col>
+                    <ion-col size="5">{{productSpecs.KW}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </div>
+            <!--/.Carousel Wrapper-->
+          </div>
+          <br>
+
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'suitsTheseModel'">
+          <div class="ion-padding-top" >
+
+            <div *ngFor="let p of suitsTheseModelArr;" class="pb-2">
+              <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{p.make}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+
+                  <div *ngFor="let i1 of p.modelList; let j=index;">
+                    <mat-accordion>
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            {{i1.model}}
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+
+
+                        <div *ngFor="let i2 of i1.produSpec; let k=index;">
+
+                          <div class="table-responsive1">
+
+                            <ion-grid class="ion-no-padding">
+                              <ion-row class="lightColor">
+                                <ion-col size="6">Vehicle Model</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.Model}}</ion-col>
+                              </ion-row>
+
+                              <ion-row class="cement">
+                                <ion-col size="6">Engine Code</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.Enginecode}}</ion-col>
+                              </ion-row>
+
+                              <ion-row class="lightColor">
+                                <ion-col size="6">Vehicle Engine Code</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.Modelcode}}</ion-col>
+                              </ion-row>
+
+                              <!-- <ion-row class="cement">
+                                <ion-col size="6">Month From / Year From</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.MonthFrom}} / {{i2.YearFrom}}</ion-col>
+                              </ion-row>
+
+                              <ion-row class="lightColor">
+                                <ion-col size="6">Month Till / Year Till</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.MonthTill}} / {{i2.YearTill}}</ion-col>
+                              </ion-row> -->
+
+                              <ion-row class="cement">
+                                <ion-col size="6">Month From / Year From</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">
+                                  {{productSpecs.MonthFrom}}
+                                  <span *ngIf="productSpecs.YearFrom !== '' " >
+                                    / {{productSpecs.YearFrom}}
+                                  </span>                      
+                                </ion-col>
+                              </ion-row>
+            
+                              <ion-row class="lightColor">
+                                <ion-col size="6">Month Till / Year Till</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">
+                                  {{productSpecs.MonthTill}} 
+                                  <span *ngIf="productSpecs.YearTill !== '' " >
+                                    / {{productSpecs.YearTill}}
+                                  </span>
+                                </ion-col>
+                              </ion-row>
+
+                              <ion-row class="cement">
+                                <ion-col size="6">Application Att</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.ApplicationAttributes}}</ion-col>
+                              </ion-row>
+
+                              <ion-row class="lightColor">
+                                <ion-col size="6">Stroke</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.Stroke}}</ion-col>
+                              </ion-row>
+
+                              <ion-row class="cement">
+                                <ion-col size="6">CC</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.CC}}</ion-col>
+                              </ion-row>
+
+                              <ion-row class="lightColor">
+                                <ion-col size="6">KW</ion-col>
+                                <ion-col size="1">:</ion-col>
+                                <ion-col size="5">{{i2.KW}}</ion-col>
+                              </ion-row>
+                            </ion-grid>
+                          </div>
+                          <div>
+                            <hr class="hrRed">
+                          </div>
+                        </div>
+
+                      </mat-expansion-panel>
+                    </mat-accordion>
+
+                  </div>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+              <!-- <br> -->
+            </div>
+
+
+          </div>
+        </ion-list>
+
+
+        <ion-list *ngSwitchCase="'otherResources'">
+          <div class="ion-padding-top" >
+
+            <div id="container">
+              <app-norecord [isNoRecord]="videoPdfRecord"></app-norecord>
+            </div>
+
+
+            <div *ngFor="let pdf of pdfArray">
+              <mat-accordion *ngIf="pdf != null"  >
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      PDF
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ion-button color="danger" expand="full" mode="md" size="small" (click)="config.downloadPdf(pdf)">
+                    <i class="fa fa-file-pdf-o" slot="start"></i>&nbsp;
+                    Download PDF
+                  </ion-button>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+            <br>
+            <div *ngFor="let video of videoArray">
+              <mat-accordion  *ngIf="video != '' "   >
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      VIDEO
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                
+
+                  <img width="100%" height="250px" class="ion-padding" [src]='config.getYouTubeVideoID(video)'>
+                  <ion-button color="danger" expand="full" mode="md" size="small"
+                    (click)="config.openWebpage(video)">
+                    <i class="fa fa-youtube-play" slot="start"></i>&nbsp;
+                    Play Video
+                  </ion-button>
+                  <!-- <ion-button color="danger" expand="full" mode="md" size="small"
+                    (click)="config.playYoutubeVideoFn(video)">
+                    <i class="fa fa-youtube-play" slot="start"></i>&nbsp;
+                    Play Video
+                  </ion-button> -->
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </ion-list>
+
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<app-fabs></app-fabs>

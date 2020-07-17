@@ -1,0 +1,320 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <img src="../../../assets/img/bannersp.png">
+        </ion-col>
+        <ion-col size="12">
+          <ion-text color="light" class="ion-text-center">
+            <h5><b>Registration</b></h5>
+          </ion-text>
+          <div class="ion-text-right">
+            <ion-text color="light" (click)="skipFn()">Skip</ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+
+  <div class="ion-padding">
+    <form [formGroup]="validationsForm">
+      <div class="row">
+        <div class="col-4">
+          <label for="mobNo" class="col-form-label">
+            <ion-text color="light">Mobile No <span class="required">*</span></ion-text>
+          </label>
+        </div>
+        <!-- <div class="col-3">
+          
+        </div> -->
+        <div class="col-8">
+          <table>
+            <tr>
+              <td>
+                <input type="text" class="form-control" disabled="disabled" maxlength="3" value="+91"
+                  style="width:50px">
+              </td>
+              <td>&nbsp;</td>
+              <td width="100%">
+                <ion-input type="text" class="form-control" placeholder=" Mobile No" maxlength="10" minlength="10"
+                  (ionChange)="mobileNoOnChange($event)" formControlName="mobileNo"></ion-input>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+        <div class="col-12">
+          <p class="ion-text-end">
+            <ng-container *ngFor="let validation of errorMSG.validation_messages.mobileNo">
+              <div class="error-message"
+                *ngIf="validationsForm.get('mobileNo').hasError(validation.type) && (validationsForm.get('mobileNo').dirty || validationsForm.get('mobileNo').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="userName" class="col-form-label">
+            <ion-text color="light">Name</ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control" formControlName="name" name="userName" placeholder="Enter Name" />
+        </div>
+        <div class="col-12">&nbsp;</div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="emailID" class="col-form-label">
+            <ion-text color="light">Email</ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control" id="emailID" formControlName="email" placeholder="Enter Email">
+        </div>
+        <div class="col-12">
+          <p class="ion-text-end float-right">
+            <ng-container *ngFor="let validation of errorMSG.validation_messages.email">
+              <div class="error-message ion-text-center ion-padding-top"
+                *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-4">
+          <label for="busName" class="col-form-label">
+            <ion-text color="light">Business Name <span class="required">*</span></ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control" id="busName" formControlName="businessname"
+            placeholder="Enter Business Name">
+          <p class="ion-text-end float-right">
+            <ng-container *ngFor="let validation of errorMSG.validation_messages.businessname">
+              <div class="error-message"
+                *ngIf="validationsForm.get('businessname').hasError(validation.type) && (validationsForm.get('businessname').dirty || validationsForm.get('businessname').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </p>
+        </div>
+        <!-- <div class="col-12">
+       
+      </div> -->
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="typeOfUsers" class="col-form-label">
+            <ion-text color="light">Type of User </ion-text><span class="required">*</span>
+          </label>
+        </div>
+        <div class="col-8">
+          <!-- <mat-select formControlName="usertype" (selectionChange)="getUserType($event)" class="form-control" disabled="{{enableDisableElement}}"   > -->
+          <mat-select formControlName="usertype" (selectionChange)="getUserType($event)" class="form-control">
+            <mat-option value="">Type of User</mat-option>
+            <mat-option value="Distributors">Distributors</mat-option>
+            <mat-option value="Dealer / Retailer">Dealer / Retailer</mat-option>
+            <mat-option value="Mechanic">Mechanic</mat-option>
+            <mat-option value="Gates Employee">Gates Employee</mat-option>
+            <mat-option value="Others">Others</mat-option>
+          </mat-select>
+        </div>
+        <div class="col-12">
+          <p class="ion-text-end float-right">
+            <ng-container *ngFor="let validation of errorMSG.validation_messages.usertype">
+              <div class="error-message"
+                *ngIf="validationsForm.get('usertype').hasError(validation.type) && (validationsForm.get('usertype').dirty || validationsForm.get('usertype').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="enableGST">
+        <!-- *ngIf="enableGSTDetails"> -->
+
+        <!-- <div class="row">
+        <div class="col-4">
+          <label class="col-form-label" for='chk'>
+            <ion-text color="light">I Don't have GST Tin No</ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+          <ion-checkbox color="dark" id="chk" (ionChange)="chkBoxOnChanged($event)"></ion-checkbox>
+        </div>
+      </div> -->
+
+        <div class="row">
+          <div class="col-4">
+            <label for="gst" class="col-form-label">
+              <ion-text color="light">GST No</ion-text>
+            </label>
+          </div>
+          <div class="col-8">
+            <input type="text" class="form-control" id="gst" formControlName="Gstin" placeholder="Enter GST No">
+          </div>
+          <div class="col-12">
+            &nbsp;
+          </div>
+          <!-- <div class="col-12">
+          <p class="ion-text-end float-right">
+            <ng-container *ngFor="let validation of errorMSG.validation_messages.Gstin">
+              <div class="error-message"
+                *ngIf="validationsForm.get('Gstin').hasError(validation.type) && (validationsForm.get('Gstin').dirty || validationsForm.get('Gstin').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </p>
+        </div> -->
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <label for="shop" class="col-form-label">
+              <ion-text color="light">Shop Name</ion-text>
+            </label>
+          </div>
+          <div class="col-8">
+            <input type="text" class="form-control" id="shop" formControlName="ShopName" placeholder="Enter Shop Name">
+          </div>
+          <div class="col-12">
+            &nbsp;
+          </div>
+          <!-- <div class="col-12">
+          <p class="ion-text-end float-right">
+            <ng-container *ngFor="let validation of errorMSG.validation_messages.ShopName">
+              <div class="error-message"
+                *ngIf="validationsForm.get('ShopName').hasError(validation.type) && (validationsForm.get('ShopName').dirty || validationsForm.get('ShopName').touched)">
+                <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </p>
+        </div> -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="add" class="col-form-label">
+            <ion-text color="light">Country</ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" disabled="disabled" value="India"  >
+        </div>
+        <div class="col-12">
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="add" class="col-form-label">
+            <ion-text color="light">State</ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" placeholder="State" formControlName="State" >
+        </div>
+        <div class="col-12">
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="add" class="col-form-label">
+            <ion-text color="light">City</ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" placeholder="City" formControlName="City" >
+        </div>
+        <div class="col-12">
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="add" class="col-form-label">
+            <ion-text color="light">Zipcode</ion-text>
+          </label>
+        </div>
+        <div class="col-8">
+            <input type="text" class="form-control" placeholder="Zipcode" formControlName="Zipcode" >
+        </div>
+        <div class="col-12">
+          &nbsp;
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-4">
+          <label for="add" class="col-form-label">
+            <ion-text color="light">Street Name</ion-text><span class="required">*</span>
+          </label>
+        </div>
+        <div class="col-8">
+          <textarea name="add" class="form-control" rows="5" cols="25" formControlName="address"
+            placeholder="Enter Address"></textarea>
+        </div>
+
+      </div>
+
+      <div class="ion-text-center ion-padding-top" *ngIf="enableOTP">
+        <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length: 4, allowNumbersOnly: true}">
+        </ng-otp-input>
+        <br>
+        <div>
+          <ion-text color="light" class="ion-padding-top">Please Wait for 30 to 120 Seconds</ion-text>
+        </div>
+        <div>
+          <ion-text color="light">If You Not Received OTP Press Resend</ion-text>
+        </div>
+      </div>
+
+
+      <ion-grid>
+        <ion-row class="ion-text-center">
+          <ion-col *ngIf="chkNewUser || isOTPVerified == false">
+            <ion-button mode="md" color="danger" class="ion-text-capitalize" (click)="enableOTPFn(validationsForm.value)"
+              [disabled]="!validationsForm.valid">{{btnOTPString}}</ion-button>
+          </ion-col>
+          <ion-col color="danger">
+            <!-- <ion-button color="danger" type="submit" [disabled]="!validationsForm.valid">Register</ion-button> -->
+            <ion-button mode="md" color="danger" class="ion-text-capitalize" [disabled]="!validationsForm.valid"
+              (click)="onSubmit(validationsForm.value)">Register</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <!-- <ion-row class="ion-text-center" *ngIf="!chkNewUser">
+        <ion-col size="12" color="danger">
+          <ion-button mode="md" color="danger" [disabled]="!validationsForm.valid"
+            (click)="onSubmit(validationsForm.value)">Register</ion-button>
+        </ion-col>
+      </ion-row> -->
+
+      </ion-grid>
+
+
+
+    </form>
+  </div>
+</ion-content>

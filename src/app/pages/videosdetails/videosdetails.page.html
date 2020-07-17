@@ -1,0 +1,17 @@
+<app-header [pagetitle]="VideoCatagoryname"> </app-header>
+
+<ion-content class="ion-padding-top">
+  <ion-list lines="full">
+    <ion-item *ngFor="let vd of videosDetailsJson" (click)="openExternalURL(vd.videoURL)"  >
+      <ion-thumbnail slot="start">
+        <img src="../../../assets/img/gatesThumbnail.jpeg">
+      </ion-thumbnail>
+      <ion-label color="light">
+        <span class="text-wrap">
+          {{vd.Videoname}}
+        </span>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<app-fabs></app-fabs>
